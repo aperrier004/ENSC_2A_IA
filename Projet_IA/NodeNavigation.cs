@@ -105,15 +105,15 @@ namespace Projet_IA
         // TODO
         public override List<GenericNode> GetListSucc()
         {
-            // On reconstruit le carré 3x3 à partir du nom et on mémorise la position du ?
+            // On reconstruit le carré 300x300 à partir du nom et on mémorise la position du ?
             int posx = -1; int posy = -1;
-            char[,] tab = new char[3, 3];
-            for (int j = 0; j <= 2; j++)
-                for (int i = 0; i <= 2; i++)
+            double[,] mat = new double[300, 300]; //remplacer 300 par nbPixels ?
+            for (int j = 0; j < 300; j++)
+                for (int i = 0; i < 300; i++)
                 {
-                    tab[i, j] = Name[j * 3 + i];
+                    mat[i, j] = Coord[i,j]; //Comment initialiser mat pour que chaque case de mat contienne un tableau de coordonnées ?
 
-                    if (tab[i, j] == '?')
+                    if (mat[i, j] == '?') //trouver comment traduire où se trouve le bateau
                     {
                         posx = i;
                         posy = j;
@@ -125,68 +125,86 @@ namespace Projet_IA
             {
                 // Successeur à gauche
                 // recopie du tableau
-                char[,] tab2 = new char[3, 3];
-                for (int j = 0; j <= 2; j++)
-                    for (int i = 0; i <= 2; i++)
+                double[,] mat2 = new double[300, 300]; 
+                for (int j = 0; j < 300; j++)
+                    for (int i = 0; i < 300; i++)
                     {
-                        tab2[i, j] = tab[i, j];
+                        mat2[i, j] = mat[i, j];
                     }
                 // MAJ de la position du ?
-                tab2[posx, posy] = tab2[posx - 1, posy];
-                tab2[posx - 1, posy] = '?';
+                mat2[posx, posy] = mat2[posx - 1, posy];
+                mat2[posx - 1, posy] = '?';
                 // Ajout à listsucc
-                lsucc.Add(new NodeNavigation(GetStringFromTab(tab2)));
+                lsucc.Add(new NodeNavigation(GetStringFromTab(mat2)));
             }
-            if (posx < 2)
+            if (posx < 299)
             {
                 // Successeur à droite
                 // recopie du tableau
-                char[,] tab2 = new char[3, 3];
+                double[,] mat2 = new double[300, 300];
                 for (int j = 0; j <= 2; j++)
                     for (int i = 0; i <= 2; i++)
                     {
-                        tab2[i, j] = tab[i, j];
+                        mat2[i, j] = mat[i, j];
                     }
                 // MAJ de la position du ?
-                tab2[posx, posy] = tab2[posx + 1, posy];
-                tab2[posx + 1, posy] = '?';
+                mat2[posx, posy] = mat2[posx + 1, posy];
+                mat2[posx + 1, posy] = '?';
                 // Ajout à listsucc
-                lsucc.Add(new NodeNavigation(GetStringFromTab(tab2)));
+                lsucc.Add(new NodeNavigation(GetStringFromTab(mat2)));
             }
 
             if (posy > 0)
             {
                 // Successeur en haut
                 // recopie du tableau
-                char[,] tab2 = new char[3, 3];
+                double[,] mat2 = new double[300, 300];
                 for (int j = 0; j <= 2; j++)
                     for (int i = 0; i <= 2; i++)
                     {
-                        tab2[i, j] = tab[i, j];
+                        mat2[i, j] = mat[i, j];
                     }
                 // MAJ de la position du ?
-                tab2[posx, posy] = tab2[posx, posy - 1];
-                tab2[posx, posy - 1] = '?';
+                mat2[posx, posy] = mat2[posx, posy - 1];
+                mat2[posx, posy - 1] = '?';
                 // Ajout à listsucc
-                lsucc.Add(new NodeNavigation(GetStringFromTab(tab2)));
+                lsucc.Add(new NodeNavigation(GetStringFromTab(mat2)));
             }
-            if (posy < 2)
+            if (posy < 299)
             {
                 // Successeur en bas
                 // recopie du tableau
-                char[,] tab2 = new char[3, 3];
+                double[,] mat2 = new double[300, 300];
                 for (int j = 0; j <= 2; j++)
                     for (int i = 0; i <= 2; i++)
                     {
-                        tab2[i, j] = tab[i, j];
+                        mat2[i, j] = mat[i, j];
                     }
                 // MAJ de la position du ?
-                tab2[posx, posy] = tab2[posx, posy + 1];
-                tab2[posx, posy + 1] = '?';
+                mat2[posx, posy] = mat2[posx, posy + 1];
+                mat2[posx, posy + 1] = '?';
                 // Ajout à listsucc
-                lsucc.Add(new NodeNavigation(GetStringFromTab(tab2)));
+                lsucc.Add(new NodeNavigation(GetStringFromTab(mat2)));
             }
 
+            // Pour gérer les diagonales 
+            if (posx > 0 && posy > 0)
+            {
+                // Successeur à gauche et en haut
+                // recopie du tableau
+                double[,] mat2 = new double[300, 300];
+                for (int j = 0; j < 300; j++)
+                    for (int i = 0; i < 300; i++)
+                    {
+                        mat2[i, j] = mat[i, j];
+                    }
+                // MAJ de la position du ?
+                mat2[posx, posy] = mat2[posx - 1, posy - 1];
+                mat2[posx - 1, posy - 1] = '?';
+                // Ajout à listsucc
+                lsucc.Add(new NodeNavigation(GetStringFromTab(mat2)));
+            }
+            // TRAITER LES 3 AUTRES DIAGONALES 
             return lsucc;
         }
 
