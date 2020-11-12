@@ -83,13 +83,17 @@ namespace Projet_IA
                 else
                 {
                     label_feedback.Text = "Une solution a été trouvée";
-                    foreach (GenericNode N in Lres)
+                    //foreach (GenericNode N in Lres)
+                    for (int i = 0; i < Lres.Count; i++)
                     {
-                        NodeNavigation NV = (NodeNavigation)N;
+                        //NodeNavigation NV = (NodeNavigation)N;
                         //tracerSegment(NV.);
                         //listBox1.Items.Add(N);
+
+                        //Esimation du temps total
+                        textBox_tpsTotalNav.Text = Lres[i].GetArcCost(Lres[i + 1]);
                     }
-                    textBox_tpsTotalNav.Text = "";
+                    //textBox_tpsTotalNav.Text = "";
                     textBox_nbNoeuds.Text = Lres.Count.ToString();
                     textBox_sommeNoeudsOF.Text = (g.CountInOpenList() + g.CountInClosedList()).ToString();
                 }
