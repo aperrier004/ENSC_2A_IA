@@ -67,12 +67,12 @@ namespace Projet_IA
             return (distance / boatspeed);
         }
 
-        public static char cas = 'a'; // à modifier en ‘b’ ou ‘c’ selon le choix de l’utilisateur
+        public static char typeVent = 'a'; // à modifier en ‘b’ ou ‘c’ selon le choix de l’utilisateur
         public static double get_wind_speed(double x, double y)
         {
-            if (cas == 'a')
+            if (typeVent == 'a')
                 return 50;
-            else if (cas == 'b')
+            else if (typeVent == 'b')
                 if (y > 150)
                     return 50;
                 else return 20;
@@ -82,9 +82,9 @@ namespace Projet_IA
         }
         public static double get_wind_direction(double x, double y)
         {
-            if (cas == 'a')
+            if (typeVent == 'a')
                 return 30;
-            else if (cas == 'b')
+            else if (typeVent == 'b')
                 if (y > 150)
                     return 180;
                 else return 90;
@@ -96,6 +96,7 @@ namespace Projet_IA
         // TODO : Les modifier avec xf et yf
         // Permet de définir des coordonées finales par défaut
         public static int[] coordF = new int[] { 30, 30 };
+
         // Fonction qui définit l'état final d(à vérifier)e la navigation
         public override bool EndState()
         {
@@ -107,13 +108,13 @@ namespace Projet_IA
         {
             // On reconstruit le carré 3x3 à partir du nom et on mémorise la position du ?
             int posx = -1; int posy = -1;
-            char[,] tab = new char[3, 3];
+            int[,] tab = new int[3, 3]; // modif : char[,] <- int et new int
             for (int j = 0; j <= 2; j++)
                 for (int i = 0; i <= 2; i++)
                 {
-                    tab[i, j] = Name[j * 3 + i];
+                    tab[i, j] = Coord[j * 3 + i]; //modif : Name <- Coord
 
-                    if (tab[i, j] == '?')
+                    if (tab[i, j] == 0) // modif == '?' en 0
                     {
                         posx = i;
                         posy = j;
@@ -216,7 +217,7 @@ namespace Projet_IA
 
         public override string ToString()
         {
-            return Name;
+            return Coord; // Modif
         }
     }
 }

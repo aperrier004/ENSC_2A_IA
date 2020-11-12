@@ -83,15 +83,15 @@ namespace Projet_IA
         {
             if(radioButton_a.Checked)
             {
-                NodeNavigation.cas = 'a';
+                NodeNavigation.typeVent = 'a';
             }
             else if (radioButton_b.Checked)
             {
-                NodeNavigation.cas = 'b';
+                NodeNavigation.typeVent = 'b';
             }
             else if (radioButton_c.Checked)
             {
-                NodeNavigation.cas = 'c';
+                NodeNavigation.typeVent = 'c';
             }
         }
 
