@@ -8,10 +8,12 @@ namespace Projet_IA
 {
     class NodeNavigation : GenericNode
     {
-        int[] Coord;
-        public NodeNavigation(int[] newcoord) : base()
+        int CoordX;
+        int CoordY;
+        public NodeNavigation(int newcoordX, int newCoordY) : base()
         {
-            Coord = newcoord;
+            CoordX = newcoordX;
+            CoordY = newCoordY;
         }
 
         // TODO
@@ -19,7 +21,7 @@ namespace Projet_IA
         public override bool IsEqual(GenericNode N2)
         {
             NodeNavigation NV = (NodeNavigation)(N2);
-            return (NV.Coord == Coord);
+            return (NV.CoordX == CoordX && NV.CoordY == CoordY);
         }
         
 
@@ -28,7 +30,7 @@ namespace Projet_IA
         public override double GetArcCost(GenericNode N2)
         {
             NodeNavigation NT = (NodeNavigation)N2;
-            return time_estimation((int)this.Coord[0], (int)this.Coord[1], NT.Coord[0], NT.Coord[1]);
+            return time_estimation(CoordX, CoordY, NT.CoordX, NT.CoordY);
         }
 
         // Soit on crée un classe outil / fonction et on les déclare sous forme static 
@@ -67,12 +69,11 @@ namespace Projet_IA
             return (distance / boatspeed);
         }
 
-        public static char typeVent = 'a'; // à modifier en ‘b’ ou ‘c’ selon le choix de l’utilisateur
         public static double get_wind_speed(double x, double y)
         {
-            if (typeVent == 'a')
+            if (Form1.typeVent == 'a')
                 return 50;
-            else if (typeVent == 'b')
+            else if (Form1.typeVent == 'b')
                 if (y > 150)
                     return 50;
                 else return 20;
@@ -82,9 +83,9 @@ namespace Projet_IA
         }
         public static double get_wind_direction(double x, double y)
         {
-            if (typeVent == 'a')
+            if (Form1.typeVent == 'a')
                 return 30;
-            else if (typeVent == 'b')
+            else if (Form1.typeVent == 'b')
                 if (y > 150)
                     return 180;
                 else return 90;
@@ -94,118 +95,73 @@ namespace Projet_IA
         }
 
         // TODO : Les modifier avec xf et yf
-        // Permet de définir des coordonées finales par défaut
-        public static int[] coordF = new int[] { 30, 30 };
         // Fonction qui définit l'état final d(à vérifier)e la navigation
         public override bool EndState()
         {
-            return (this.Coord == coordF);
+            return (this.CoordX == Form1.xf && this.CoordY == Form1.yf);
         }
 
         // TODO
         public override List<GenericNode> GetListSucc()
         {
-            // On reconstruit le carré 300x300 à partir du nom et on mémorise la position du ?
-            int posx = -1; int posy = -1;
-            double[,] mat = new double[300, 300]; //remplacer 300 par nbPixels ?
-            for (int j = 0; j < 300; j++)
-                for (int i = 0; i < 300; i++)
-                {
-                    mat[i, j] = Coord[i,j]; //Comment initialiser mat pour que chaque case de mat contienne un tableau de coordonnées ?
-
-                    if (mat[i, j] == '?') //trouver comment traduire où se trouve le bateau
-                    {
-                        posx = i;
-                        posy = j;
-                    }
-                }
-
             List<GenericNode> lsucc = new List<GenericNode>();
-            if (posx > 0)
+            
+            // succ à droite
+            if(verifCoord(this.CoordX + 1, this.CoordY))
             {
-                // Successeur à gauche
-                // recopie du tableau
-                double[,] mat2 = new double[300, 300]; 
-                for (int j = 0; j < 300; j++)
-                    for (int i = 0; i < 300; i++)
-                    {
-                        mat2[i, j] = mat[i, j];
-                    }
-                // MAJ de la position du ?
-                mat2[posx, posy] = mat2[posx - 1, posy];
-                mat2[posx - 1, posy] = '?';
-                // Ajout à listsucc
-                lsucc.Add(new NodeNavigation(GetStringFromTab(mat2)));
+                lsucc.Add(new NodeNavigation(this.CoordX + 1, this.CoordY));
             }
-            if (posx < 299)
+            // succ à gauche
+            if (verifCoord(this.CoordX - 1, this.CoordY))
             {
-                // Successeur à droite
-                // recopie du tableau
-                double[,] mat2 = new double[300, 300];
-                for (int j = 0; j <= 2; j++)
-                    for (int i = 0; i <= 2; i++)
-                    {
-                        mat2[i, j] = mat[i, j];
-                    }
-                // MAJ de la position du ?
-                mat2[posx, posy] = mat2[posx + 1, posy];
-                mat2[posx + 1, posy] = '?';
-                // Ajout à listsucc
-                lsucc.Add(new NodeNavigation(GetStringFromTab(mat2)));
+                lsucc.Add(new NodeNavigation(this.CoordX - 1, this.CoordY));
             }
-
-            if (posy > 0)
+            // succ en haut
+            if (verifCoord(this.CoordX, this.CoordY + 1))
             {
-                // Successeur en haut
-                // recopie du tableau
-                double[,] mat2 = new double[300, 300];
-                for (int j = 0; j <= 2; j++)
-                    for (int i = 0; i <= 2; i++)
-                    {
-                        mat2[i, j] = mat[i, j];
-                    }
-                // MAJ de la position du ?
-                mat2[posx, posy] = mat2[posx, posy - 1];
-                mat2[posx, posy - 1] = '?';
-                // Ajout à listsucc
-                lsucc.Add(new NodeNavigation(GetStringFromTab(mat2)));
+                lsucc.Add(new NodeNavigation(this.CoordX, this.CoordY + 1));
             }
-            if (posy < 299)
+            // succ en bas
+            if (verifCoord(this.CoordX, this.CoordY - 1))
             {
-                // Successeur en bas
-                // recopie du tableau
-                double[,] mat2 = new double[300, 300];
-                for (int j = 0; j <= 2; j++)
-                    for (int i = 0; i <= 2; i++)
-                    {
-                        mat2[i, j] = mat[i, j];
-                    }
-                // MAJ de la position du ?
-                mat2[posx, posy] = mat2[posx, posy + 1];
-                mat2[posx, posy + 1] = '?';
-                // Ajout à listsucc
-                lsucc.Add(new NodeNavigation(GetStringFromTab(mat2)));
+                lsucc.Add(new NodeNavigation(this.CoordX, this.CoordY - 1));
+            }
+            // succ en haut à droite
+            if (verifCoord(this.CoordX + 1, this.CoordY + 1))
+            {
+                lsucc.Add(new NodeNavigation(this.CoordX +1, this.CoordY + 1));
+            }
+            // succ en haut à gauche
+            if (verifCoord(this.CoordX - 1, this.CoordY + 1))
+            {
+                lsucc.Add(new NodeNavigation(this.CoordX - 1, this.CoordY + 1));
+            }
+            // succ en bas à droite
+            if (verifCoord(this.CoordX + 1, this.CoordY - 1))
+            {
+                lsucc.Add(new NodeNavigation(this.CoordX + 1, this.CoordY - 1));
+            }
+            // succ en bas à gauche
+            if (verifCoord(this.CoordX - 1, this.CoordY - 1))
+            {
+                lsucc.Add(new NodeNavigation(this.CoordX - 1, this.CoordY - 1));
             }
 
-            // Pour gérer les diagonales 
-            if (posx > 0 && posy > 0)
-            {
-                // Successeur à gauche et en haut
-                // recopie du tableau
-                double[,] mat2 = new double[300, 300];
-                for (int j = 0; j < 300; j++)
-                    for (int i = 0; i < 300; i++)
-                    {
-                        mat2[i, j] = mat[i, j];
-                    }
-                // MAJ de la position du ?
-                mat2[posx, posy] = mat2[posx - 1, posy - 1];
-                mat2[posx - 1, posy - 1] = '?';
-                // Ajout à listsucc
-                lsucc.Add(new NodeNavigation(GetStringFromTab(mat2)));
-            }
-            // TRAITER LES 3 AUTRES DIAGONALES 
+
             return lsucc;
+        }
+
+        // Fonction qui permet de savoir si les coordonées sont dans la zone naviguable
+        public bool verifCoord(int CoordX, int CoordY)
+        {
+            bool cond = false;
+
+            if (CoordX > 0 && CoordY > 0 && CoordX < Form1.nbPixels && CoordY < Form1.nbPixels)
+            {
+                cond = true;
+            }
+
+            return cond;
         }
 
         // MAYBE TODO
@@ -221,6 +177,7 @@ namespace Projet_IA
             return (0);
         }
 
+        // A SUPPRIMER ?
         private string GetStringFromTab(char[,] tab)
         {
             string newname = "";
@@ -231,10 +188,11 @@ namespace Projet_IA
                 }
             return newname;
         }
-
+        /*
         public override string ToString()
         {
-            return Name;
-        }
+            return Coord;
+        }*/
+
     }
 }

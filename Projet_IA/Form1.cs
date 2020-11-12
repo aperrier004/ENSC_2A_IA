@@ -12,22 +12,29 @@ namespace Projet_IA
 {
     public partial class Form1 : Form
     {
-        static public double[,] matrice;
+        static public int[,] matrice;
         static public int nbPixels = 300;
-        static public int x0;
-        static public int xf;
+        static public int x0 = -1;
+        static public int xf = -1;
+        static public int y0 = -1;
+        static public int yf = -1;
+        static public char typeVent = ' ';
+        static public int cptClick = 0;
 
 
         public Form1()
         {
             InitializeComponent();
+            
+            
         }
+
 
         public void initMatrice()
         {
             //Initilisation d'une matrice représentant l'océan à parcourir
             //Elle contient le départ x0,y0 et l'arrivée xf,yf
-            matrice = new double[nbPixels, nbPixels];
+            matrice = new int[nbPixels, nbPixels];
             for (int i = 0; i < nbPixels; i++)
                 for (int j = 0; j < nbPixels; j++)
                 {
@@ -57,12 +64,40 @@ namespace Projet_IA
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-
         }
 
         private void button_start_Click(object sender, EventArgs e)
         {
-            
+            if (x0 >= 0 && y0 >= 0 && xf >= 0 && yf >= 0 && (typeVent != ' '))
+            {
+                label_ConsigneVent.Text = "Vent sélectionné : " + typeVent;
+
+                SearchTree g = new SearchTree();
+                NodeNavigation N0 = new NodeNavigation(x0,y0);
+                List<GenericNode> Lres = g.RechercheSolutionAEtoile(N0);
+
+                if (Lres.Count == 0)
+                {
+                    label_feedback.Text = "Pas de solution";
+                }
+                else
+                {
+                    label_feedback.Text = "Une solution a été trouvée";
+                    foreach (GenericNode N in Lres)
+                    {
+                        NodeNavigation NV = (NodeNavigation)N;
+                        //tracerSegment(NV.);
+                        //listBox1.Items.Add(N);
+                    }
+                    textBox_tpsTotalNav.Text = "";
+                    textBox_nbNoeuds.Text = Lres.Count.ToString();
+                    textBox_sommeNoeudsOF.Text = (g.CountInOpenList() + g.CountInClosedList()).ToString();
+                }
+
+            } else
+            {
+                label_feedback.Text = "Vous n'avez pas terminé le paramétrage de l'application";
+            }
         }
 
         public void tracerSegment(double x1, double x2, double y1, double y2)
@@ -75,24 +110,9 @@ namespace Projet_IA
         }
 
         
-
-
-        
-        // Vérifier si c'est le bon évenement 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
-            if(radioButton_a.Checked)
-            {
-                NodeNavigation.typeVent = 'a';
-            }
-            else if (radioButton_b.Checked)
-            {
-                NodeNavigation.typeVent = 'b';
-            }
-            else if (radioButton_c.Checked)
-            {
-                NodeNavigation.typeVent = 'c';
-            }
+            
         }
 
         private void label2_Click_1(object sender, EventArgs e)
@@ -108,6 +128,67 @@ namespace Projet_IA
         private void textBox_x0_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void pictureBox_fondMarin_MouseClick(object sender, MouseEventArgs e)
+        {
+            if(cptClick == 0)
+            {
+                // Point de départ
+                x0 = e.X;
+                y0 = e.Y;
+
+                label_consignePoint.Text = "Cliquez de nouveau sur l'image pour paramétrer le point d'arrivée";
+                cptClick++;
+
+            }
+            else if(cptClick == 1)
+            {
+                // Point d'arrivée
+                xf = e.X;
+                yf = e.Y;
+
+                pictureBox_fondMarin.Enabled = false;
+                label_consignePoint.Text = "Les points ont été paramétrés avec x0: " + x0 + " y0: " + y0 + " xf: " + xf + " yf: " + yf;
+
+            }
+        }
+
+        private void pictureBox_fondMarin_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+        }
+
+        private void pictureBox_fondMarin_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton_a_CheckedChanged(object sender, EventArgs e)
+        {
+            typeVent = 'a';
+        }
+
+        private void radioButton_b_CheckedChanged(object sender, EventArgs e)
+        {
+            typeVent = 'b';
+        }
+
+        private void radioButton_c_CheckedChanged(object sender, EventArgs e)
+        {
+            typeVent = 'c';
+        }
+
+        private void radioButton_a_Click(object sender, EventArgs e)
+        {
+            typeVent = 'a';
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+        }
+
+        private void Form1_Click(object sender, EventArgs e)
+        {
         }
     }
 }

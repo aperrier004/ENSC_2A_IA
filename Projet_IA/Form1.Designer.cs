@@ -28,14 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox_x0 = new System.Windows.Forms.TextBox();
-            this.label_x0 = new System.Windows.Forms.Label();
-            this.label_y0 = new System.Windows.Forms.Label();
-            this.textBox_y1 = new System.Windows.Forms.TextBox();
-            this.label_yf = new System.Windows.Forms.Label();
-            this.textBox_yf = new System.Windows.Forms.TextBox();
-            this.label_xf = new System.Windows.Forms.Label();
-            this.textBox_xf = new System.Windows.Forms.TextBox();
             this.button_start = new System.Windows.Forms.Button();
             this.groupBox_typeVent = new System.Windows.Forms.GroupBox();
             this.radioButton_c = new System.Windows.Forms.RadioButton();
@@ -48,76 +40,13 @@
             this.textBox_sommeNoeudsOF = new System.Windows.Forms.TextBox();
             this.label_sommeNoeudsOF = new System.Windows.Forms.Label();
             this.pictureBox_fondMarin = new System.Windows.Forms.PictureBox();
+            this.label_consignePoint = new System.Windows.Forms.Label();
+            this.label_ConsigneVent = new System.Windows.Forms.Label();
+            this.label_feedback = new System.Windows.Forms.Label();
+            this.treeView1 = new System.Windows.Forms.TreeView();
             this.groupBox_typeVent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_fondMarin)).BeginInit();
             this.SuspendLayout();
-            // 
-            // textBox_x0
-            // 
-            this.textBox_x0.Location = new System.Drawing.Point(168, 50);
-            this.textBox_x0.Name = "textBox_x0";
-            this.textBox_x0.Size = new System.Drawing.Size(151, 22);
-            this.textBox_x0.TabIndex = 0;
-            this.textBox_x0.TextChanged += new System.EventHandler(this.textBox_x0_TextChanged);
-            // 
-            // label_x0
-            // 
-            this.label_x0.AutoSize = true;
-            this.label_x0.Location = new System.Drawing.Point(211, 18);
-            this.label_x0.Name = "label_x0";
-            this.label_x0.Size = new System.Drawing.Size(87, 17);
-            this.label_x0.TabIndex = 1;
-            this.label_x0.Text = "Valeur de x0";
-            this.label_x0.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // label_y0
-            // 
-            this.label_y0.AutoSize = true;
-            this.label_y0.Location = new System.Drawing.Point(413, 18);
-            this.label_y0.Name = "label_y0";
-            this.label_y0.Size = new System.Drawing.Size(88, 17);
-            this.label_y0.TabIndex = 3;
-            this.label_y0.Text = "Valeur de y0";
-            // 
-            // textBox_y1
-            // 
-            this.textBox_y1.Location = new System.Drawing.Point(370, 50);
-            this.textBox_y1.Name = "textBox_y1";
-            this.textBox_y1.Size = new System.Drawing.Size(151, 22);
-            this.textBox_y1.TabIndex = 2;
-            // 
-            // label_yf
-            // 
-            this.label_yf.AutoSize = true;
-            this.label_yf.Location = new System.Drawing.Point(402, 119);
-            this.label_yf.Name = "label_yf";
-            this.label_yf.Size = new System.Drawing.Size(84, 17);
-            this.label_yf.TabIndex = 7;
-            this.label_yf.Text = "Valeur de yf";
-            // 
-            // textBox_yf
-            // 
-            this.textBox_yf.Location = new System.Drawing.Point(359, 151);
-            this.textBox_yf.Name = "textBox_yf";
-            this.textBox_yf.Size = new System.Drawing.Size(151, 22);
-            this.textBox_yf.TabIndex = 6;
-            // 
-            // label_xf
-            // 
-            this.label_xf.AutoSize = true;
-            this.label_xf.Location = new System.Drawing.Point(200, 119);
-            this.label_xf.Name = "label_xf";
-            this.label_xf.Size = new System.Drawing.Size(83, 17);
-            this.label_xf.TabIndex = 5;
-            this.label_xf.Text = "Valeur de xf";
-            this.label_xf.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // textBox_xf
-            // 
-            this.textBox_xf.Location = new System.Drawing.Point(157, 151);
-            this.textBox_xf.Name = "textBox_xf";
-            this.textBox_xf.Size = new System.Drawing.Size(151, 22);
-            this.textBox_xf.TabIndex = 4;
             // 
             // button_start
             // 
@@ -152,6 +81,7 @@
             this.radioButton_c.TabStop = true;
             this.radioButton_c.Text = "c";
             this.radioButton_c.UseVisualStyleBackColor = true;
+            this.radioButton_c.CheckedChanged += new System.EventHandler(this.radioButton_c_CheckedChanged);
             // 
             // radioButton_b
             // 
@@ -163,6 +93,7 @@
             this.radioButton_b.TabStop = true;
             this.radioButton_b.Text = "b";
             this.radioButton_b.UseVisualStyleBackColor = true;
+            this.radioButton_b.CheckedChanged += new System.EventHandler(this.radioButton_b_CheckedChanged);
             // 
             // radioButton_a
             // 
@@ -174,6 +105,8 @@
             this.radioButton_a.TabStop = true;
             this.radioButton_a.Text = "a";
             this.radioButton_a.UseVisualStyleBackColor = true;
+            this.radioButton_a.CheckedChanged += new System.EventHandler(this.radioButton_a_CheckedChanged);
+            this.radioButton_a.Click += new System.EventHandler(this.radioButton_a_Click);
             // 
             // label_tpsTotalNav
             // 
@@ -231,18 +164,58 @@
             // pictureBox_fondMarin
             // 
             this.pictureBox_fondMarin.Image = global::Projet_IA.Properties.Resources.fond_marin1;
-            this.pictureBox_fondMarin.Location = new System.Drawing.Point(469, 209);
+            this.pictureBox_fondMarin.Location = new System.Drawing.Point(434, 194);
             this.pictureBox_fondMarin.Name = "pictureBox_fondMarin";
             this.pictureBox_fondMarin.Size = new System.Drawing.Size(300, 300);
             this.pictureBox_fondMarin.TabIndex = 12;
             this.pictureBox_fondMarin.TabStop = false;
             this.pictureBox_fondMarin.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.pictureBox_fondMarin.DoubleClick += new System.EventHandler(this.pictureBox_fondMarin_DoubleClick);
+            this.pictureBox_fondMarin.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_fondMarin_MouseClick);
+            this.pictureBox_fondMarin.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_fondMarin_MouseDoubleClick);
+            // 
+            // label_consignePoint
+            // 
+            this.label_consignePoint.AutoSize = true;
+            this.label_consignePoint.Location = new System.Drawing.Point(127, 49);
+            this.label_consignePoint.Name = "label_consignePoint";
+            this.label_consignePoint.Size = new System.Drawing.Size(440, 17);
+            this.label_consignePoint.TabIndex = 22;
+            this.label_consignePoint.Text = "Cliquez une seule fois sur l\'image pour paramétrer le point de départ";
+            // 
+            // label_ConsigneVent
+            // 
+            this.label_ConsigneVent.AutoSize = true;
+            this.label_ConsigneVent.Location = new System.Drawing.Point(127, 112);
+            this.label_ConsigneVent.Name = "label_ConsigneVent";
+            this.label_ConsigneVent.Size = new System.Drawing.Size(191, 17);
+            this.label_ConsigneVent.TabIndex = 23;
+            this.label_ConsigneVent.Text = "Sélectionnez un type de vent";
+            // 
+            // label_feedback
+            // 
+            this.label_feedback.AutoSize = true;
+            this.label_feedback.Location = new System.Drawing.Point(142, 156);
+            this.label_feedback.Name = "label_feedback";
+            this.label_feedback.Size = new System.Drawing.Size(0, 17);
+            this.label_feedback.TabIndex = 24;
+            // 
+            // treeView1
+            // 
+            this.treeView1.Location = new System.Drawing.Point(211, 326);
+            this.treeView1.Name = "treeView1";
+            this.treeView1.Size = new System.Drawing.Size(121, 97);
+            this.treeView1.TabIndex = 25;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 521);
+            this.Controls.Add(this.treeView1);
+            this.Controls.Add(this.label_feedback);
+            this.Controls.Add(this.label_ConsigneVent);
+            this.Controls.Add(this.label_consignePoint);
             this.Controls.Add(this.textBox_sommeNoeudsOF);
             this.Controls.Add(this.label_sommeNoeudsOF);
             this.Controls.Add(this.textBox_nbNoeuds);
@@ -252,17 +225,10 @@
             this.Controls.Add(this.groupBox_typeVent);
             this.Controls.Add(this.button_start);
             this.Controls.Add(this.pictureBox_fondMarin);
-            this.Controls.Add(this.label_yf);
-            this.Controls.Add(this.textBox_yf);
-            this.Controls.Add(this.label_xf);
-            this.Controls.Add(this.textBox_xf);
-            this.Controls.Add(this.label_y0);
-            this.Controls.Add(this.textBox_y1);
-            this.Controls.Add(this.label_x0);
-            this.Controls.Add(this.textBox_x0);
-            this.Enabled = false;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Navigation";
+            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Click += new System.EventHandler(this.Form1_Click);
             this.groupBox_typeVent.ResumeLayout(false);
             this.groupBox_typeVent.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_fondMarin)).EndInit();
@@ -272,15 +238,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox textBox_x0;
-        private System.Windows.Forms.Label label_x0;
-        private System.Windows.Forms.Label label_y0;
-        private System.Windows.Forms.TextBox textBox_y1;
-        private System.Windows.Forms.Label label_yf;
-        private System.Windows.Forms.TextBox textBox_yf;
-        private System.Windows.Forms.Label label_xf;
-        private System.Windows.Forms.TextBox textBox_xf;
         private System.Windows.Forms.PictureBox pictureBox_fondMarin;
         private System.Windows.Forms.Button button_start;
         private System.Windows.Forms.GroupBox groupBox_typeVent;
@@ -293,6 +250,10 @@
         private System.Windows.Forms.Label label_nbNoeuds;
         private System.Windows.Forms.TextBox textBox_sommeNoeudsOF;
         private System.Windows.Forms.Label label_sommeNoeudsOF;
+        private System.Windows.Forms.Label label_consignePoint;
+        private System.Windows.Forms.Label label_ConsigneVent;
+        private System.Windows.Forms.Label label_feedback;
+        private System.Windows.Forms.TreeView treeView1;
     }
 }
 
