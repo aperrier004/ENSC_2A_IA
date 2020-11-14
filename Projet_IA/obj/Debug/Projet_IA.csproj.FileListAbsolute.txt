@@ -8,3 +8,12 @@ D:\Mes Documents\Projet_IA\Projet_IA\bin\Debug\Projet_IA.exe
 D:\Mes Documents\Projet_IA\Projet_IA\bin\Debug\Projet_IA.pdb
 D:\Mes Documents\Projet_IA\Projet_IA\obj\Debug\Projet_IA.exe
 D:\Mes Documents\Projet_IA\Projet_IA\obj\Debug\Projet_IA.pdb
+C:\Users\utilisateur\Documents\GitHub\ENSC_2A_IA\Projet_IA\bin\Debug\Projet_IA.exe.config
+C:\Users\utilisateur\Documents\GitHub\ENSC_2A_IA\Projet_IA\bin\Debug\Projet_IA.exe
+C:\Users\utilisateur\Documents\GitHub\ENSC_2A_IA\Projet_IA\bin\Debug\Projet_IA.pdb
+C:\Users\utilisateur\Documents\GitHub\ENSC_2A_IA\Projet_IA\obj\Debug\Projet_IA.csprojAssemblyReference.cache
+C:\Users\utilisateur\Documents\GitHub\ENSC_2A_IA\Projet_IA\obj\Debug\Projet_IA.Form1.resources
+C:\Users\utilisateur\Documents\GitHub\ENSC_2A_IA\Projet_IA\obj\Debug\Projet_IA.Properties.Resources.resources
+C:\Users\utilisateur\Documents\GitHub\ENSC_2A_IA\Projet_IA\obj\Debug\Projet_IA.csproj.GenerateResource.cache
+C:\Users\utilisateur\Documents\GitHub\ENSC_2A_IA\Projet_IA\obj\Debug\Projet_IA.exe
+C:\Users\utilisateur\Documents\GitHub\ENSC_2A_IA\Projet_IA\obj\Debug\Projet_IA.pdb

@@ -91,7 +91,7 @@ namespace Projet_IA
                         //listBox1.Items.Add(N);
 
                         //Esimation du temps total
-                        textBox_tpsTotalNav.Text = Lres[i].GetArcCost(Lres[i + 1]);
+                        //textBox_tpsTotalNav.Text = Lres[i].GetArcCost(Lres[i + 1]);
                     }
                     //textBox_tpsTotalNav.Text = "";
                     textBox_nbNoeuds.Text = Lres.Count.ToString();
@@ -131,7 +131,7 @@ namespace Projet_IA
 
         private void textBox_x0_TextChanged(object sender, EventArgs e)
         {
-
+            x0 = int.Parse(textBox_x0.Text);
         }
 
         private void pictureBox_fondMarin_MouseClick(object sender, MouseEventArgs e)
@@ -193,6 +193,26 @@ namespace Projet_IA
 
         private void Form1_Click(object sender, EventArgs e)
         {
+        }
+
+        private void textBox_x0_TextChanged_1(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void textBox_y0_TextChanged(object sender, EventArgs e)
+        {
+            y0 = int.Parse(textBox_y0.Text);
+        }
+
+        private void textBox_xf_TextChanged(object sender, EventArgs e)
+        {
+            xf = int.Parse(textBox_xf.Text);
+        }
+
+        private void textBox_yf_TextChanged(object sender, EventArgs e)
+        {
+            yf = int.Parse(textBox_yf.Text);
         }
     }
 }
