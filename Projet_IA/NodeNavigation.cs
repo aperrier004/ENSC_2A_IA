@@ -8,8 +8,8 @@ namespace Projet_IA
 {
     class NodeNavigation : GenericNode
     {
-        int CoordX;
-        int CoordY;
+        public int CoordX; //public pour que ça puisse être utilisé par tracerSegment dans Form1
+        public int CoordY;
         public NodeNavigation(int newcoordX, int newCoordY) : base()
         {
             CoordX = newcoordX;

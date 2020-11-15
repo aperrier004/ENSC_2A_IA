@@ -83,17 +83,20 @@ namespace Projet_IA
                 else
                 {
                     label_feedback.Text = "Une solution a été trouvée";
+
+                    double tpsTotal = 0;
                     //foreach (GenericNode N in Lres)
-                    for (int i = 0; i < Lres.Count; i++)
+                    for (int i = 0; i < Lres.Count-1; i++)
                     {
-                        //NodeNavigation NV = (NodeNavigation)N;
-                        //tracerSegment(NV.);
-                        //listBox1.Items.Add(N);
+                        NodeNavigation N1 = (NodeNavigation)Lres[i];
+                        NodeNavigation N2 = (NodeNavigation)Lres[i+1];
+                        tracerSegment(N1.CoordX, N1.CoordY, N2.CoordX, N2.CoordY);
+                        //listBox1.Items.Add(N); pourquoi on avait écrit ça déjà ?
 
                         //Esimation du temps total
-                        //textBox_tpsTotalNav.Text = Lres[i].GetArcCost(Lres[i + 1]);
+                        tpsTotal += Lres[i].GetArcCost(Lres[i + 1]);
                     }
-                    //textBox_tpsTotalNav.Text = "";
+                    textBox_tpsTotalNav.Text = tpsTotal.ToString();
                     textBox_nbNoeuds.Text = Lres.Count.ToString();
                     textBox_sommeNoeudsOF.Text = (g.CountInOpenList() + g.CountInClosedList()).ToString();
                 }
@@ -109,11 +112,16 @@ namespace Projet_IA
             // soient x1, y1, x2, y2 des double utilisés pour définir les 2 extrémités d’un segment.
             Pen penwhite = new Pen(Color.White); // d’autres couleurs sont disponibles
             Graphics g = pictureBox_fondMarin.CreateGraphics();
-            g.DrawLine(penwhite, new Point((int)x1, pictureBox_fondMarin.Height - (int)y1),
-            new Point((int)x2, pictureBox_fondMarin.Height - (int)y2));
+
+            //Code du prof :
+            //g.DrawLine(penwhite, new Point((int)x1, pictureBox_fondMarin.Height - (int)y1),
+            //new Point((int)x2, pictureBox_fondMarin.Height - (int)y2));
+
+            //Plus logique que ce soit ça :
+            g.DrawLine(penwhite, new Point((int)x1, (int)y1), new Point((int)x2, (int)y2));
         }
 
-        
+
         private void groupBox1_Enter(object sender, EventArgs e)
         {
             
