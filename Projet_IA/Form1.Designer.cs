@@ -126,9 +126,10 @@
             this.label_tpsTotalNav.AutoSize = true;
             this.label_tpsTotalNav.Location = new System.Drawing.Point(30, 380);
             this.label_tpsTotalNav.Name = "label_tpsTotalNav";
-            this.label_tpsTotalNav.Size = new System.Drawing.Size(198, 20);
+            this.label_tpsTotalNav.Size = new System.Drawing.Size(283, 20);
             this.label_tpsTotalNav.TabIndex = 16;
-            this.label_tpsTotalNav.Text = "Temps total de navigation :";
+            this.label_tpsTotalNav.Text = "Temps total de navigation (en heures) :";
+            this.label_tpsTotalNav.Click += new System.EventHandler(this.label_tpsTotalNav_Click);
             // 
             // textBox_tpsTotalNav
             // 
@@ -153,9 +154,9 @@
             this.label_nbNoeuds.AutoSize = true;
             this.label_nbNoeuds.Location = new System.Drawing.Point(30, 474);
             this.label_nbNoeuds.Name = "label_nbNoeuds";
-            this.label_nbNoeuds.Size = new System.Drawing.Size(288, 20);
+            this.label_nbNoeuds.Size = new System.Drawing.Size(296, 20);
             this.label_nbNoeuds.TabIndex = 18;
-            this.label_nbNoeuds.Text = "Nombre des noeuds du chemin solution";
+            this.label_nbNoeuds.Text = "Nombre des noeuds du chemin solution :";
             // 
             // textBox_sommeNoeudsOF
             // 
@@ -170,11 +171,11 @@
             // label_sommeNoeudsOF
             // 
             this.label_sommeNoeudsOF.AutoSize = true;
-            this.label_sommeNoeudsOF.Location = new System.Drawing.Point(30, 546);
+            this.label_sommeNoeudsOF.Location = new System.Drawing.Point(30, 556);
             this.label_sommeNoeudsOF.Name = "label_sommeNoeudsOF";
-            this.label_sommeNoeudsOF.Size = new System.Drawing.Size(356, 20);
+            this.label_sommeNoeudsOF.Size = new System.Drawing.Size(364, 20);
             this.label_sommeNoeudsOF.TabIndex = 20;
-            this.label_sommeNoeudsOF.Text = "Somme des noeuds des listes Ouverts et Fermés";
+            this.label_sommeNoeudsOF.Text = "Somme des noeuds des listes Ouverts et Fermés :";
             this.label_sommeNoeudsOF.Click += new System.EventHandler(this.label2_Click_1);
             // 
             // pictureBox_fondMarin

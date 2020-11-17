@@ -20,6 +20,7 @@ namespace Projet_IA
         // Fonction qui permet de vérifier si le noeud est égale au noeud donné
         public override bool IsEqual(GenericNode N2)
         {
+            // renvoie True si l’égalité entre deux objets de type GenericNode est vérifiée
             NodeNavigation NV = (NodeNavigation)(N2);
             return (NV.CoordX == CoordX && NV.CoordY == CoordY);
         }
@@ -29,9 +30,12 @@ namespace Projet_IA
         // Fonction qui permet d'obtenir le coût d'une arrête
         public override double GetArcCost(GenericNode N2)
         {
+            // appelle la fonction time_estimation() permettant de renvoyer un double correspondant 
+            // au coût d’un chemin et donc le temps mis par le bateau pour aller d’un point A à un point B
             NodeNavigation NT = (NodeNavigation)N2;
             return time_estimation(CoordX, CoordY, NT.CoordX, NT.CoordY);
         }
+
 
         // Soit on crée un classe outil / fonction et on les déclare sous forme static 
         public static double time_estimation(double x1, double y1, double x2, double y2)
@@ -66,7 +70,7 @@ namespace Projet_IA
             else
                 return 1000000;
             // estimation du temps de navigation entre p1 et p2
-            return (distance / boatspeed);
+            return distance / boatspeed;
         }
 
         public static double get_wind_speed(double x, double y)
@@ -98,12 +102,16 @@ namespace Projet_IA
         // Fonction qui définit l'état final d(à vérifier)e la navigation
         public override bool EndState()
         {
+            // renvoie True si l’objet de type GenericNode étudié correspond au 
+            // point d’arrivée du bateau saisi par l’utilisateur
             return (this.CoordX == Form1.xf && this.CoordY == Form1.yf);
         }
 
         // TODO
         public override List<GenericNode> GetListSucc()
         {
+            // vérifie les coordonnées de tous les nœuds voisins et s’ils sont possibles (c’est-à-dire pas en 
+            // dehors de l’image ou pas déjà fermé/parcouru) les ajoute à une liste de nœuds qui sera renvoyée
             List<GenericNode> lsucc = new List<GenericNode>();
             
             // succ à droite
@@ -154,6 +162,7 @@ namespace Projet_IA
         // Fonction qui permet de savoir si les coordonées sont dans la zone naviguable
         public bool verifCoord(int CoordX, int CoordY)
         {
+            // renvoie True si les coordonnées étudiées sont contenues dans la zone navigable
             bool cond = false;
 
             if (CoordX > 0 && CoordY > 0 && CoordX < Form1.nbPixels && CoordY < Form1.nbPixels)
@@ -167,17 +176,14 @@ namespace Projet_IA
         // MAYBE TODO
         public override double CalculeHCost()
         {
-            // on compte les mal placés 
-            /*  int nb=8;
-              for (int i = 0; i < 8; i++)
-                  if (Name[i] == Convert.ToChar(i + 49)) // En code ASCII 1 est le 49ème caractère
-                      nb--;
-              return(nb);
-             */
-            return (0);
+            // on calcule la distance entre le noeud étudié et le point d'arrivée
+            double distance = 0;
+            distance = Math.Sqrt(Math.Pow((double)(this.CoordX) - (double)(Form1.xf),2)+Math.Pow((double)(this.CoordY-Form1.yf),2));
+                
+            return(distance); 
         }
 
-        // A SUPPRIMER ?
+        // A SUPPRIMER ? 
         private string GetStringFromTab(char[,] tab)
         {
             string newname = "";

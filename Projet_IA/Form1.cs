@@ -96,7 +96,8 @@ namespace Projet_IA
                         //Esimation du temps total
                         tpsTotal += Lres[i].GetArcCost(Lres[i + 1]);
                     }
-                    textBox_tpsTotalNav.Text = tpsTotal.ToString();
+                    double resTps = Math.Round(tpsTotal,2);
+                    textBox_tpsTotalNav.Text = resTps.ToString();
                     textBox_nbNoeuds.Text = Lres.Count.ToString();
                     textBox_sommeNoeudsOF.Text = (g.CountInOpenList() + g.CountInClosedList()).ToString();
                 }
@@ -221,6 +222,11 @@ namespace Projet_IA
         private void textBox_yf_TextChanged(object sender, EventArgs e)
         {
             yf = int.Parse(textBox_yf.Text);
+        }
+
+        private void label_tpsTotalNav_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
