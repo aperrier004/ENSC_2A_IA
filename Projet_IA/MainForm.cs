@@ -18,7 +18,6 @@ namespace Projet_IA
 {
     public partial class MainForm : Form
     {
-        static public int[,] matrice;
         static public int nbPixels = 300;
         static public int x0 = -1;
         static public int xf = -1;
@@ -26,28 +25,12 @@ namespace Projet_IA
         static public int yf = -1;
         static public char typeVent = ' ';
         static public int cptClick = 0;
+        static public int unitsTextBox;
 
 
         public MainForm()
         {
             InitializeComponent();
-            
-            
-        }
-
-
-        // A SUPPR
-        public void initMatrice()
-        {
-            //Initilisation d'une matrice représentant l'océan à parcourir
-            //Elle contient le départ x0,y0 et l'arrivée xf,yf
-            matrice = new int[nbPixels, nbPixels];
-            for (int i = 0; i < nbPixels; i++)
-                for (int j = 0; j < nbPixels; j++)
-                {
-                    matrice[i, j] = -1;
-
-                }          
         }
 
 
@@ -56,8 +39,13 @@ namespace Projet_IA
             // Si les coordonées de nos points ont été paramétrés ainsi que le type de vent
             if (x0 >= 0 && y0 >= 0 && xf >= 0 && yf >= 0 && (typeVent != ' '))
             {
+
                 // On affiche un feedback pour le vent 
                 label_ConsigneVent.Text = "Vent sélectionné : " + typeVent;
+
+                // Permet de ne plus pouvoir cliquer sur l'image
+                pictureBox_fondMarin.Enabled = false;
+                label_consignePoint.Text = "Les points ont été paramétrés avec x0: " + x0 + " y0: " + y0 + " xf: " + xf + " yf: " + yf;
 
                 // On initialise l'arbre
                 SearchTree g = new SearchTree();
@@ -129,44 +117,54 @@ namespace Projet_IA
 
         private void textBox_x0_TextChanged(object sender, EventArgs e)
         {
-            x0 = int.Parse(textBox_x0.Text);
-            pictureBox_fondMarin.Enabled = false;
+            if (int.TryParse(textBox_x0.Text, out unitsTextBox))
+            {
+                x0 = int.Parse(textBox_x0.Text);
+            }
+            else
+            {
+                label_feedback.Text = "Attention à votre valeur de x0";
+            }
             label_consignePoint.Text = "";
         }
 
         private void pictureBox_fondMarin_MouseClick(object sender, MouseEventArgs e)
         {
-            // On enlève les options de rentrer à la main les coordonées
-            label_consigneCoord.Text = "";
-            textBox_x0.Enabled = false;
-            textBox_y0.Enabled = false;
-            textBox_xf.Enabled = false;
-            textBox_yf.Enabled = false;
-
-            // S'il s'agit du premier clic sur l'image
-            if (cptClick == 0)
+            // Si on a pas déjà rentrée des coordonées avant dans les textBox
+            if(label_consignePoint.Text != "")
             {
-                // Point de départ
-                x0 = e.X;
-                y0 = e.Y;
+                // On enlève les options de rentrer à la main les coordonées
+                label_consigneCoord.Text = "";
+                textBox_x0.Enabled = false;
+                textBox_y0.Enabled = false;
+                textBox_xf.Enabled = false;
+                textBox_yf.Enabled = false;
+                // S'il s'agit du premier clic sur l'image
+                if (cptClick == 0)
+                {
+                    // Point de départ
+                    x0 = e.X;
+                    y0 = e.Y;
 
-                label_consignePoint.Text = "Cliquez de nouveau sur l'image pour paramétrer le point d'arrivée";
-                
-                cptClick++;
+                    label_consignePoint.Text = "Cliquez de nouveau sur l'image pour paramétrer le point d'arrivée";
 
+                    cptClick++;
+
+                }
+                // S'il s'agit du deuxième clic sur l'image
+                else if (cptClick == 1)
+                {
+                    // Point d'arrivée
+                    xf = e.X;
+                    yf = e.Y;
+
+                    // Permet de ne plus pouvoir cliquer sur l'image
+                    pictureBox_fondMarin.Enabled = false;
+                    label_consignePoint.Text = "Les points ont été paramétrés avec x0: " + x0 + " y0: " + y0 + " xf: " + xf + " yf: " + yf;
+
+                }
             }
-            // S'il s'agit du deuxième clic sur l'image
-            else if(cptClick == 1)
-            {
-                // Point d'arrivée
-                xf = e.X;
-                yf = e.Y;
-
-                // Permet de ne plus pouvoir cliquer sur l'image
-                pictureBox_fondMarin.Enabled = false;
-                label_consignePoint.Text = "Les points ont été paramétrés avec x0: " + x0 + " y0: " + y0 + " xf: " + xf + " yf: " + yf;
-
-            }
+            
         }
 
 
@@ -192,20 +190,40 @@ namespace Projet_IA
 
         private void textBox_y0_TextChanged(object sender, EventArgs e)
         {
-            if (textBox_y0.Text is string)
+            if (int.TryParse(textBox_y0.Text, out unitsTextBox))
+            {
                 y0 = int.Parse(textBox_y0.Text);
+            }
+            else
+            {
+                label_feedback.Text = "Attention à votre valeur de y0";
+            }
         }
 
         private void textBox_xf_TextChanged(object sender, EventArgs e)
         {
-            if(textBox_xf.Text is string)
+            if (int.TryParse(textBox_xf.Text, out unitsTextBox))
+            {
                 xf = int.Parse(textBox_xf.Text);
+            }
+            else
+            {
+                label_feedback.Text = "Attention à votre valeur de xf";
+            }
+                
         }
 
         private void textBox_yf_TextChanged(object sender, EventArgs e)
         {
-            if (textBox_yf.Text is string)
+            if (int.TryParse(textBox_yf.Text, out unitsTextBox))
+            {
                 yf = int.Parse(textBox_yf.Text);
+            }
+            else
+            {
+                label_feedback.Text = "Attention à votre valeur de yf";
+            }
+               
         }
 
         private void MainForm_Load(object sender, EventArgs e)
