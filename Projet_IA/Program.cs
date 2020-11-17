@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+ * PROJET IA - 2A ENSC
+ * Auteurs : Juliette GADEAU et Alban PERRIER
+ * Fichier : Program.cs
+ * But : Main Class
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +23,7 @@ namespace Projet_IA
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new MainForm());
         }
     }
 }
