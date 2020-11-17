@@ -81,8 +81,7 @@ namespace Projet_IA
                     {
                         NodeNavigation N1 = (NodeNavigation)Lres[i];
                         NodeNavigation N2 = (NodeNavigation)Lres[i+1];
-                        // TEST A SUPPRIMER
-                        label1.Text = N1.CoordX + ";" + N1.CoordY;
+
                         // On appelle la fonction tracerSegment pour tracer le chemin entre les deux derniers noeuds
                         tracerSegment(N1.CoordX, N1.CoordY, N2.CoordX, N2.CoordY);
 
@@ -99,6 +98,9 @@ namespace Projet_IA
                     textBox_sommeNoeudsOF.Text = (g.CountInOpenList() + g.CountInClosedList()).ToString();
                 }
 
+                button_restart.Visible = true;
+                button_start.Enabled = false;
+
             } else
             {
                 label_feedback.Text = "Vous n'avez pas terminé le paramétrage de l'application";
@@ -108,17 +110,18 @@ namespace Projet_IA
         // Entrée : des int correspondants aux coordonées de deux points
         // Sortie : /
         // Desc : Tracer une ligne entre deux points et dessiner un cercle pour le point de départ et d'arrivée
-        public void tracerSegment(int x1, int x2, int y1, int y2)
+        public void tracerSegment(int x1, int y1, int x2, int y2)
         {
             // soient x1, y1, x2, y2 des double utilisés pour définir les 2 extrémités d’un segment.
 
             // Objets pour les couleurs
-            Pen penwhite = new Pen(Color.White); 
+            Pen penwhite = new Pen(Color.White);
             SolidBrush redBrush = new SolidBrush(Color.Red);
 
             Graphics g = pictureBox_fondMarin.CreateGraphics();
             // On dessine un segment entre les deux points
-            g.DrawLine(penwhite, new Point(x1,y1), new Point(x2, y2));
+            g.DrawLine(penwhite, x1, y1, x2, y2);
+
             // On dessin un cercle plein sur les deux points
             g.FillEllipse(redBrush, x0, y0, 5, 5);
             g.FillEllipse(redBrush, xf, yf, 5, 5);
@@ -127,18 +130,28 @@ namespace Projet_IA
         private void textBox_x0_TextChanged(object sender, EventArgs e)
         {
             x0 = int.Parse(textBox_x0.Text);
+            pictureBox_fondMarin.Enabled = false;
+            label_consignePoint.Text = "";
         }
 
         private void pictureBox_fondMarin_MouseClick(object sender, MouseEventArgs e)
         {
+            // On enlève les options de rentrer à la main les coordonées
+            label_consigneCoord.Text = "";
+            textBox_x0.Enabled = false;
+            textBox_y0.Enabled = false;
+            textBox_xf.Enabled = false;
+            textBox_yf.Enabled = false;
+
             // S'il s'agit du premier clic sur l'image
-            if(cptClick == 0)
+            if (cptClick == 0)
             {
                 // Point de départ
                 x0 = e.X;
                 y0 = e.Y;
 
                 label_consignePoint.Text = "Cliquez de nouveau sur l'image pour paramétrer le point d'arrivée";
+                
                 cptClick++;
 
             }
@@ -179,18 +192,30 @@ namespace Projet_IA
 
         private void textBox_y0_TextChanged(object sender, EventArgs e)
         {
-            y0 = int.Parse(textBox_y0.Text);
+            if (textBox_y0.Text is string)
+                y0 = int.Parse(textBox_y0.Text);
         }
 
         private void textBox_xf_TextChanged(object sender, EventArgs e)
         {
-            xf = int.Parse(textBox_xf.Text);
+            if(textBox_xf.Text is string)
+                xf = int.Parse(textBox_xf.Text);
         }
 
         private void textBox_yf_TextChanged(object sender, EventArgs e)
         {
-            yf = int.Parse(textBox_yf.Text);
+            if (textBox_yf.Text is string)
+                yf = int.Parse(textBox_yf.Text);
         }
 
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_restart_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
+        }
     }
 }

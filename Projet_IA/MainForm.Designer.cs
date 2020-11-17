@@ -51,14 +51,15 @@
             this.label_y0 = new System.Windows.Forms.Label();
             this.label_xf = new System.Windows.Forms.Label();
             this.label_yf = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.label_consigneCoord = new System.Windows.Forms.Label();
+            this.button_restart = new System.Windows.Forms.Button();
             this.groupBox_typeVent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_fondMarin)).BeginInit();
             this.SuspendLayout();
             // 
             // button_start
             // 
-            this.button_start.Location = new System.Drawing.Point(164, 253);
+            this.button_start.Location = new System.Drawing.Point(138, 263);
             this.button_start.Name = "button_start";
             this.button_start.Size = new System.Drawing.Size(75, 23);
             this.button_start.TabIndex = 13;
@@ -179,11 +180,11 @@
             // label_consignePoint
             // 
             this.label_consignePoint.AutoSize = true;
-            this.label_consignePoint.Location = new System.Drawing.Point(22, 55);
+            this.label_consignePoint.Location = new System.Drawing.Point(22, 59);
             this.label_consignePoint.Name = "label_consignePoint";
-            this.label_consignePoint.Size = new System.Drawing.Size(440, 17);
+            this.label_consignePoint.Size = new System.Drawing.Size(460, 17);
             this.label_consignePoint.TabIndex = 22;
-            this.label_consignePoint.Text = "Cliquez une seule fois sur l\'image pour paramétrer le point de départ";
+            this.label_consignePoint.Text = "Cliquez une seule fois sur l\'image pour paramétrer le point de départ ou";
             // 
             // label_ConsigneVent
             // 
@@ -197,14 +198,14 @@
             // label_feedback
             // 
             this.label_feedback.AutoSize = true;
-            this.label_feedback.Location = new System.Drawing.Point(22, 81);
+            this.label_feedback.Location = new System.Drawing.Point(27, 120);
             this.label_feedback.Name = "label_feedback";
             this.label_feedback.Size = new System.Drawing.Size(0, 17);
             this.label_feedback.TabIndex = 24;
             // 
             // textBox_x0
             // 
-            this.textBox_x0.Location = new System.Drawing.Point(93, 145);
+            this.textBox_x0.Location = new System.Drawing.Point(100, 164);
             this.textBox_x0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox_x0.Name = "textBox_x0";
             this.textBox_x0.Size = new System.Drawing.Size(89, 22);
@@ -213,7 +214,7 @@
             // 
             // textBox_y0
             // 
-            this.textBox_y0.Location = new System.Drawing.Point(302, 145);
+            this.textBox_y0.Location = new System.Drawing.Point(309, 164);
             this.textBox_y0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox_y0.Name = "textBox_y0";
             this.textBox_y0.Size = new System.Drawing.Size(89, 22);
@@ -222,7 +223,7 @@
             // 
             // textBox_xf
             // 
-            this.textBox_xf.Location = new System.Drawing.Point(93, 194);
+            this.textBox_xf.Location = new System.Drawing.Point(100, 213);
             this.textBox_xf.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox_xf.Name = "textBox_xf";
             this.textBox_xf.Size = new System.Drawing.Size(89, 22);
@@ -231,7 +232,7 @@
             // 
             // textBox_yf
             // 
-            this.textBox_yf.Location = new System.Drawing.Point(302, 194);
+            this.textBox_yf.Location = new System.Drawing.Point(309, 213);
             this.textBox_yf.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox_yf.Name = "textBox_yf";
             this.textBox_yf.Size = new System.Drawing.Size(89, 22);
@@ -241,7 +242,7 @@
             // label_x0
             // 
             this.label_x0.AutoSize = true;
-            this.label_x0.Location = new System.Drawing.Point(29, 145);
+            this.label_x0.Location = new System.Drawing.Point(36, 164);
             this.label_x0.Name = "label_x0";
             this.label_x0.Size = new System.Drawing.Size(34, 17);
             this.label_x0.TabIndex = 29;
@@ -250,7 +251,7 @@
             // label_y0
             // 
             this.label_y0.AutoSize = true;
-            this.label_y0.Location = new System.Drawing.Point(252, 147);
+            this.label_y0.Location = new System.Drawing.Point(259, 166);
             this.label_y0.Name = "label_y0";
             this.label_y0.Size = new System.Drawing.Size(35, 17);
             this.label_y0.TabIndex = 30;
@@ -259,7 +260,7 @@
             // label_xf
             // 
             this.label_xf.AutoSize = true;
-            this.label_xf.Location = new System.Drawing.Point(29, 197);
+            this.label_xf.Location = new System.Drawing.Point(36, 216);
             this.label_xf.Name = "label_xf";
             this.label_xf.Size = new System.Drawing.Size(30, 17);
             this.label_xf.TabIndex = 31;
@@ -268,27 +269,39 @@
             // label_yf
             // 
             this.label_yf.AutoSize = true;
-            this.label_yf.Location = new System.Drawing.Point(252, 199);
+            this.label_yf.Location = new System.Drawing.Point(259, 218);
             this.label_yf.Name = "label_yf";
             this.label_yf.Size = new System.Drawing.Size(31, 17);
             this.label_yf.TabIndex = 32;
             this.label_yf.Text = "yf : ";
             // 
-            // label1
+            // label_consigneCoord
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(387, 304);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 17);
-            this.label1.TabIndex = 33;
-            this.label1.Text = "label1";
+            this.label_consigneCoord.AutoSize = true;
+            this.label_consigneCoord.Location = new System.Drawing.Point(22, 89);
+            this.label_consigneCoord.Name = "label_consigneCoord";
+            this.label_consigneCoord.Size = new System.Drawing.Size(227, 17);
+            this.label_consigneCoord.TabIndex = 33;
+            this.label_consigneCoord.Text = "Entrez les coordonées en dessous";
+            // 
+            // button_restart
+            // 
+            this.button_restart.Location = new System.Drawing.Point(277, 263);
+            this.button_restart.Name = "button_restart";
+            this.button_restart.Size = new System.Drawing.Size(87, 23);
+            this.button_restart.TabIndex = 34;
+            this.button_restart.Text = "Restart";
+            this.button_restart.UseVisualStyleBackColor = true;
+            this.button_restart.Visible = false;
+            this.button_restart.Click += new System.EventHandler(this.button_restart_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 510);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.button_restart);
+            this.Controls.Add(this.label_consigneCoord);
             this.Controls.Add(this.label_yf);
             this.Controls.Add(this.label_xf);
             this.Controls.Add(this.label_y0);
@@ -343,7 +356,8 @@
         private System.Windows.Forms.Label label_y0;
         private System.Windows.Forms.Label label_xf;
         private System.Windows.Forms.Label label_yf;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label_consigneCoord;
+        private System.Windows.Forms.Button button_restart;
     }
 }
 
