@@ -199,14 +199,58 @@ namespace Projet_IA
             return (distance);
         }
 
-        // heurisitique avec le temps
+        //heurisitique avec le temps
         //public override double CalculeHCost()
         //{
-        //    double temps = 0;
-        //    temps = time_estimation(CoordX, CoordY, MainForm.xf, MainForm.yf);
+        //    //double temps = 0;
+        //    //temps = time_estimation(CoordX, CoordY, MainForm.xf, MainForm.yf);
+        //    //return (temps);
         //    //distance = Math.Sqrt(Math.Pow((double)(this.CoordX) - (double)(MainForm.xf), 2) + Math.Pow((double)(this.CoordY - MainForm.yf), 2));
+        //    return 0;
 
-        //    return (temps);
+        //}
+
+        //public override double CalculeHCost()
+        //{
+        //    double x1 = this.CoordX;
+        //    double y1 = this.CoordY;
+        //    double x2 = MainForm.xf;
+        //    double y2 = MainForm.yf;
+        //    double dTotale = Math.Sqrt(Math.Pow(MainForm.xf - this.CoordX, 2) + Math.Pow(MainForm.yf - this.CoordY, 2));
+        //    double nbTroncon = Math.Floor(dTotale / 10);
+        //    double angle = Math.Atan2(MainForm.yf - this.CoordY, MainForm.xf - this.CoordX);
+        //    double pasX = Math.Cos(angle) * 10;
+        //    double pasY = Math.Sin(angle) * 10;
+        //    double coutTotal = 0;
+
+        //    if (MainForm.nbPixels == 0)
+        //    {
+        //        coutTotal = time_estimation(this.CoordX, this.CoordY, MainForm.xf, MainForm.yf);
+        //    }
+        //    else
+        //    {
+        //        double tempX = this.CoordX;
+        //        double tempY = this.CoordY;
+        //        for (int i = 0; i < nbTroncon; i++) // calcul de la somme des coûts pour tous les tronçons
+        //        {
+        //            coutTotal += time_estimation(tempX, tempY, tempX + pasX, tempY + pasY);
+
+        //        }
+
+        //        // calcul du coût pour dernier tronçons vu qu'on a arrondi en bas leur nombre
+        //        coutTotal += time_estimation(tempX, tempY, MainForm.xf, MainForm.yf);
+        //    }
+
+        //    return coutTotal;
+        //}
+
+        //heuristique avec le temps d'après la distance et la vitesse maximale
+        //public override double CalculeHCost()
+        //{
+        //    double distance = 0;
+        //    distance = (Math.Sqrt(Math.Pow((double)(this.CoordX) - (double)(MainForm.xf), 2) + Math.Pow((double)(this.CoordY - MainForm.yf), 2)))/(0.9*50);
+
+        //    return (distance);
         //}
     }
 }

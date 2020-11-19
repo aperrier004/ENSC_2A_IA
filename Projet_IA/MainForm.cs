@@ -39,6 +39,7 @@ namespace Projet_IA
             // Si les coordonnées de nos points ont été paramétrées ainsi que le type de vent
             if (x0 >= 0 && y0 >= 0 && xf >= 0 && yf >= 0 && (typeVent != ' '))
             {
+                button_restart.Visible = true;
 
                 // On affiche un feedback pour le vent 
                 label_ConsigneVent.Text = "Vent sélectionné : " + typeVent;
@@ -53,7 +54,7 @@ namespace Projet_IA
                 NodeNavigation N0 = new NodeNavigation(x0,y0);
                 // On lance l'algorithme A*
                 List<GenericNode> Lres = g.RechercheSolutionAEtoile(N0);
-
+                
                 // Si une solution n'est pas trouvée
                 if (Lres.Count == 0)
                 {
@@ -86,7 +87,6 @@ namespace Projet_IA
                     textBox_sommeNoeudsOF.Text = (g.CountInOpenList() + g.CountInClosedList()).ToString();
                 }
 
-                button_restart.Visible = true;
                 button_start.Enabled = false;
 
             } else
@@ -234,6 +234,66 @@ namespace Projet_IA
         private void button_restart_Click(object sender, EventArgs e)
         {
             Application.Restart();
+        }
+
+        private void MainForm_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label_ConsigneVent_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label_consignePoint_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label_consigneCoord_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox_typeVent_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label_x0_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label_xf_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label_yf_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label_y0_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label_tpsTotalNav_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label_nbNoeuds_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label_sommeNoeudsOF_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
