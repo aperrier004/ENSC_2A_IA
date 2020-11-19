@@ -36,7 +36,7 @@ namespace Projet_IA
 
         private void button_start_Click(object sender, EventArgs e)
         {
-            // Si les coordonées de nos points ont été paramétrés ainsi que le type de vent
+            // Si les coordonnées de nos points ont été paramétrées ainsi que le type de vent
             if (x0 >= 0 && y0 >= 0 && xf >= 0 && yf >= 0 && (typeVent != ' '))
             {
 
@@ -49,7 +49,7 @@ namespace Projet_IA
 
                 // On initialise l'arbre
                 SearchTree g = new SearchTree();
-                // On crée le noeud initial avec les coordonées intiales
+                // On crée le noeud initial avec les coordonnées intiales
                 NodeNavigation N0 = new NodeNavigation(x0,y0);
                 // On lance l'algorithme A*
                 List<GenericNode> Lres = g.RechercheSolutionAEtoile(N0);
@@ -95,12 +95,12 @@ namespace Projet_IA
             }
         }
 
-        // Entrée : des int correspondants aux coordonées de deux points
+        // Entrée : des entiers correspondants aux coordonnées de deux points
         // Sortie : /
-        // Desc : Tracer une ligne entre deux points et dessiner un cercle pour le point de départ et d'arrivée
+        // Desc : Tracer une ligne entre deux points et dessiner un cercle pour représenter le point de départ et d'arrivée
         public void tracerSegment(int x1, int y1, int x2, int y2)
         {
-            // soient x1, y1, x2, y2 des double utilisés pour définir les 2 extrémités d’un segment.
+            // Soient x1, y1, x2, y2 des double utilisés pour définir les 2 extrémités d’un segment
 
             // Objets pour les couleurs
             Pen penwhite = new Pen(Color.White);
@@ -110,7 +110,7 @@ namespace Projet_IA
             // On dessine un segment entre les deux points
             g.DrawLine(penwhite, x1, y1, x2, y2);
 
-            // On dessin un cercle plein sur les deux points
+            // On dessine un cercle plein sur les deux points
             g.FillEllipse(redBrush, x0, y0, 5, 5);
             g.FillEllipse(redBrush, xf, yf, 5, 5);
         }
@@ -130,10 +130,10 @@ namespace Projet_IA
 
         private void pictureBox_fondMarin_MouseClick(object sender, MouseEventArgs e)
         {
-            // Si on a pas déjà rentrée des coordonées avant dans les textBox
+            // Si on a pas déjà rentré des coordonnées avant dans les textBox
             if(label_consignePoint.Text != "")
             {
-                // On enlève les options de rentrer à la main les coordonées
+                // On enlève les options de rentrer à la main les coordonnées
                 label_consigneCoord.Text = "";
                 textBox_x0.Enabled = false;
                 textBox_y0.Enabled = false;

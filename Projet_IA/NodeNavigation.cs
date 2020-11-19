@@ -38,14 +38,14 @@ namespace Projet_IA
         //        au coût d’un chemin et donc le temps mis par le bateau pour aller d’un point A à un point B
         public override double GetArcCost(GenericNode N2)
         {
-            // On caste le noeud pour obtenir ses coordonées
+            // On caste le noeud pour obtenir ses coordonnées
             NodeNavigation NT = (NodeNavigation)N2;
             return time_estimation(CoordX, CoordY, NT.CoordX, NT.CoordY);
         }
 
-        // Entrée : des coordonées de points
+        // Entrée : les coordonnées de deux points
         // Sortie : un double représentant le temps
-        // Desc : Permet d'obtenir le temps entre deux points 
+        // Desc : Permet d'obtenir le temps de navigation entre deux points 
         public static double time_estimation(double x1, double y1, double x2, double y2)
         {
             double distance = Math.Sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
@@ -80,9 +80,9 @@ namespace Projet_IA
             // estimation du temps de navigation entre p1 et p2
             return distance / boatspeed;
         }
-        // Entrée : les coordonées d'un point
-        // Sortie : un int
-        // Desc : permet de donner la vitesse du vent selon le type
+        // Entrée : les coordonnées d'un point
+        // Sortie : un réel
+        // Desc : permet de donner la vitesse du vent selon le type de vent
         public static double get_wind_speed(double x, double y)
         {
             if (MainForm.typeVent == 'a')
@@ -95,8 +95,8 @@ namespace Projet_IA
                 return 50;
             else return 20;
         }
-        // Entrée : les coordonées d'un point
-        // Sortie : un int
+        // Entrée : les coordonnées d'un point
+        // Sortie : un réel
         // Desc : Permet de donner la direction du vent selon le type de vent
         public static double get_wind_direction(double x, double y)
         {
@@ -171,14 +171,14 @@ namespace Projet_IA
             return lsucc;
         }
 
-        // Entrée : les coordonées d'un point
+        // Entrée : les coordonnées d'un point
         // Sortie : un booléen
         // Desc : renvoie True si les coordonnées étudiées sont contenues dans la zone navigable
         public bool verifCoord(int CoordX, int CoordY)
         {
             bool cond = false;
 
-            // Si les coordonées de ce point font partis de la fenêtre de pixels de l'image
+            // Si les coordonnées de ce point font parties de la fenêtre de pixels de l'image
             if (CoordX > 0 && CoordY > 0 && CoordX < MainForm.nbPixels && CoordY < MainForm.nbPixels)
             {
                 cond = true;
