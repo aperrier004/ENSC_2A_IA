@@ -129,42 +129,42 @@ namespace Projet_IA
             List<GenericNode> lsucc = new List<GenericNode>();
             
             // successeur à droite
-            if(VerifCoord(this.CoordX + 1, this.CoordY))
+            if(VerifCoord(this.CoordX + 1, this.CoordY) && Math.Sqrt(Math.Pow((double)(this.CoordX+1) - (double)(MainForm.xf), 2) + Math.Pow((double)(this.CoordY - MainForm.yf), 2))<= Math.Sqrt(Math.Pow((double)(this.CoordX) - (double)(MainForm.xf), 2) + Math.Pow((double)(this.CoordY - MainForm.yf), 2)))
             {
                 lsucc.Add(new NodeNavigation(this.CoordX + 1, this.CoordY));
             }
             // successeur à gauche
-            if (VerifCoord(this.CoordX - 1, this.CoordY))
+            if (VerifCoord(this.CoordX - 1, this.CoordY) && Math.Sqrt(Math.Pow((double)(this.CoordX - 1) - (double)(MainForm.xf), 2) + Math.Pow((double)(this.CoordY - MainForm.yf), 2)) <= Math.Sqrt(Math.Pow((double)(this.CoordX) - (double)(MainForm.xf), 2) + Math.Pow((double)(this.CoordY - MainForm.yf), 2)))
             {
                 lsucc.Add(new NodeNavigation(this.CoordX - 1, this.CoordY));
             }
             // successeur en haut
-            if (VerifCoord(this.CoordX, this.CoordY + 1))
+            if (VerifCoord(this.CoordX, this.CoordY + 1) && Math.Sqrt(Math.Pow((double)(this.CoordX) - (double)(MainForm.xf), 2) + Math.Pow((double)(this.CoordY+1 - MainForm.yf), 2)) <= Math.Sqrt(Math.Pow((double)(this.CoordX) - (double)(MainForm.xf), 2) + Math.Pow((double)(this.CoordY - MainForm.yf), 2)))
             {
                 lsucc.Add(new NodeNavigation(this.CoordX, this.CoordY + 1));
             }
             // successeur en bas
-            if (VerifCoord(this.CoordX, this.CoordY - 1))
+            if (VerifCoord(this.CoordX, this.CoordY - 1) && Math.Sqrt(Math.Pow((double)(this.CoordX) - (double)(MainForm.xf), 2) + Math.Pow((double)(this.CoordY - 1 - MainForm.yf), 2)) <= Math.Sqrt(Math.Pow((double)(this.CoordX) - (double)(MainForm.xf), 2) + Math.Pow((double)(this.CoordY - MainForm.yf), 2)))
             {
                 lsucc.Add(new NodeNavigation(this.CoordX, this.CoordY - 1));
             }
             // successeur en haut à droite
-            if (VerifCoord(this.CoordX + 1, this.CoordY + 1))
+            if (VerifCoord(this.CoordX + 1, this.CoordY + 1) && Math.Sqrt(Math.Pow((double)(this.CoordX+1) - (double)(MainForm.xf), 2) + Math.Pow((double)(this.CoordY + 1 - MainForm.yf), 2)) <= Math.Sqrt(Math.Pow((double)(this.CoordX) - (double)(MainForm.xf), 2) + Math.Pow((double)(this.CoordY - MainForm.yf), 2)))
             {
                 lsucc.Add(new NodeNavigation(this.CoordX +1, this.CoordY + 1));
             }
             // successeur en haut à gauche
-            if (VerifCoord(this.CoordX - 1, this.CoordY + 1))
+            if (VerifCoord(this.CoordX - 1, this.CoordY + 1) && Math.Sqrt(Math.Pow((double)(this.CoordX-1) - (double)(MainForm.xf), 2) + Math.Pow((double)(this.CoordY + 1 - MainForm.yf), 2)) <= Math.Sqrt(Math.Pow((double)(this.CoordX) - (double)(MainForm.xf), 2) + Math.Pow((double)(this.CoordY - MainForm.yf), 2)))
             {
                 lsucc.Add(new NodeNavigation(this.CoordX - 1, this.CoordY + 1));
             }
             // successeur en bas à droite
-            if (VerifCoord(this.CoordX + 1, this.CoordY - 1))
+            if (VerifCoord(this.CoordX + 1, this.CoordY - 1) && Math.Sqrt(Math.Pow((double)(this.CoordX+1) - (double)(MainForm.xf), 2) + Math.Pow((double)(this.CoordY - 1 - MainForm.yf), 2)) <= Math.Sqrt(Math.Pow((double)(this.CoordX) - (double)(MainForm.xf), 2) + Math.Pow((double)(this.CoordY - MainForm.yf), 2)))
             {
                 lsucc.Add(new NodeNavigation(this.CoordX + 1, this.CoordY - 1));
             }
             // successeur en bas à gauche
-            if (VerifCoord(this.CoordX - 1, this.CoordY - 1))
+            if (VerifCoord(this.CoordX - 1, this.CoordY - 1) && Math.Sqrt(Math.Pow((double)(this.CoordX-1) - (double)(MainForm.xf), 2) + Math.Pow((double)(this.CoordY - 1 - MainForm.yf), 2)) <= Math.Sqrt(Math.Pow((double)(this.CoordX) - (double)(MainForm.xf), 2) + Math.Pow((double)(this.CoordY - MainForm.yf), 2)))
             {
                 lsucc.Add(new NodeNavigation(this.CoordX - 1, this.CoordY - 1));
             }
@@ -186,6 +186,16 @@ namespace Projet_IA
 
             return cond;
         }
+        //heuristique avec le temps d'après la distance et la vitesse maximale
+        public override double CalculeHCost()
+        {
+            double temps = 0;
+            temps = (Math.Sqrt(Math.Pow((double)(this.CoordX) - (double)(MainForm.xf), 2) + Math.Pow((double)(this.CoordY - MainForm.yf), 2))) / 45; 
+
+            return temps;
+        }
+
+
 
         // Entrée : /
         // Sortie : un double
@@ -244,13 +254,6 @@ namespace Projet_IA
         //    return coutTotal;
         //}
 
-        //heuristique avec le temps d'après la distance et la vitesse maximale
-        public override double CalculeHCost()
-        {
-            double temps = 0;
-            temps = (Math.Sqrt(Math.Pow((double)(this.CoordX) - (double)(MainForm.xf), 2) + Math.Pow((double)(this.CoordY - MainForm.yf), 2))) / 45;
 
-            return temps;
-        }
     }
 }

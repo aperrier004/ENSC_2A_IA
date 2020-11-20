@@ -75,10 +75,11 @@ namespace Projet_IA
                         tracerSegment(N1.CoordX, N1.CoordY, N2.CoordX, N2.CoordY);
 
                         // Estimation du temps total
-                        tpsTotal += Lres[i].GetArcCost(Lres[i + 1]);
+                        //tpsTotal += Lres[i].GetArcCost(Lres[i + 1]);
                     }
                     // On arrondit le temps total
-                    double resTps = Math.Round(tpsTotal,2);
+                    //double resTps = Math.Round(tpsTotal,2);
+                    double resTps = Math.Round(Lres[Lres.Count - 1].GetGCost(),2);
                     // On affiche le temps total dans le form
                     textBox_tpsTotalNav.Text = resTps.ToString();
                     // On affiche le nombre de noeuds dans le form
@@ -119,7 +120,14 @@ namespace Projet_IA
         {
             if (int.TryParse(textBox_x0.Text, out unitsTextBox))
             {
-                x0 = int.Parse(textBox_x0.Text);
+                if(int.Parse(textBox_x0.Text)<=300 && int.Parse(textBox_x0.Text) >= 0)
+                {
+                    x0 = int.Parse(textBox_x0.Text);
+                }
+                else
+                {
+                    label_feedback.Text = "Cette coordonnée ne correspond pas à un point dans la zone navigable";
+                }
             }
             else
             {
@@ -192,7 +200,14 @@ namespace Projet_IA
         {
             if (int.TryParse(textBox_y0.Text, out unitsTextBox))
             {
-                y0 = int.Parse(textBox_y0.Text);
+                if (int.Parse(textBox_y0.Text) <= 300 && int.Parse(textBox_y0.Text) >= 0)
+                {
+                    y0 = int.Parse(textBox_y0.Text);
+                }
+                else
+                {
+                    label_feedback.Text = "Cette coordonnée ne correspond pas à un point dans la zone navigable";
+                }
             }
             else
             {
@@ -204,7 +219,14 @@ namespace Projet_IA
         {
             if (int.TryParse(textBox_xf.Text, out unitsTextBox))
             {
-                xf = int.Parse(textBox_xf.Text);
+                if (int.Parse(textBox_xf.Text) <= 300 && int.Parse(textBox_xf.Text) >= 0)
+                {
+                    xf = int.Parse(textBox_xf.Text);
+                }
+                else
+                {
+                    label_feedback.Text = "Cette coordonnée ne correspond pas à un point dans la zone navigable";
+                }
             }
             else
             {
@@ -217,7 +239,14 @@ namespace Projet_IA
         {
             if (int.TryParse(textBox_yf.Text, out unitsTextBox))
             {
-                yf = int.Parse(textBox_yf.Text);
+                if (int.Parse(textBox_yf.Text) <= 300 && int.Parse(textBox_yf.Text) >= 0)
+                {
+                    yf = int.Parse(textBox_yf.Text);
+                }
+                else
+                {
+                    label_feedback.Text = "Cette coordonnée ne correspond pas à un point dans la zone navigable";
+                }
             }
             else
             {
