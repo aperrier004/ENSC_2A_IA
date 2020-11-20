@@ -191,13 +191,13 @@ namespace Projet_IA
         // Sortie : un double
         // Desc : Fonction heuristique qui calcule la distance entre le noeud étudié et le point d'arrivée
         //Heuristique mauvaise, la on fait la distance
-        public override double CalculeHCost()
-        {
-            double distance = 0;
-            distance = Math.Sqrt(Math.Pow((double)(this.CoordX) - (double)(MainForm.xf), 2) + Math.Pow((double)(this.CoordY - MainForm.yf), 2));
+        //public override double CalculeHCost()
+        //{
+        //    double distance = 0;
+        //    distance = Math.Sqrt(Math.Pow((double)(this.CoordX) - (double)(MainForm.xf), 2) + Math.Pow((double)(this.CoordY - MainForm.yf), 2));
 
-            return (distance);
-        }
+        //    return (distance);
+        //}
 
         //heurisitique avec le temps
         //public override double CalculeHCost()
@@ -245,12 +245,12 @@ namespace Projet_IA
         //}
 
         //heuristique avec le temps d'après la distance et la vitesse maximale
-        //public override double CalculeHCost()
-        //{
-        //    double distance = 0;
-        //    distance = (Math.Sqrt(Math.Pow((double)(this.CoordX) - (double)(MainForm.xf), 2) + Math.Pow((double)(this.CoordY - MainForm.yf), 2)))/(0.9*50);
+        public override double CalculeHCost()
+        {
+            double temps = 0;
+            temps = (Math.Sqrt(Math.Pow((double)(this.CoordX) - (double)(MainForm.xf), 2) + Math.Pow((double)(this.CoordY - MainForm.yf), 2))) / 45;
 
-        //    return (distance);
-        //}
+            return temps;
+        }
     }
 }
