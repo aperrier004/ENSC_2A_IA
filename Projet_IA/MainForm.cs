@@ -6,12 +6,7 @@
  */
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Projet_IA
@@ -65,7 +60,6 @@ namespace Projet_IA
                 {
                     label_feedback.Text = "Une solution a été trouvée";
 
-                    double tpsTotal = 0;
                     for (int i = 0; i < Lres.Count-1; i++)
                     {
                         NodeNavigation N1 = (NodeNavigation)Lres[i];
@@ -74,11 +68,8 @@ namespace Projet_IA
                         // On appelle la fonction tracerSegment pour tracer le chemin entre les deux derniers noeuds
                         tracerSegment(N1.CoordX, N1.CoordY, N2.CoordX, N2.CoordY);
 
-                        // Estimation du temps total
-                        //tpsTotal += Lres[i].GetArcCost(Lres[i + 1]);
                     }
                     // On arrondit le temps total
-                    //double resTps = Math.Round(tpsTotal,2);
                     double resTps = Math.Round(Lres[Lres.Count - 1].GetGCost(),2);
                     // On affiche le temps total dans le form
                     textBox_tpsTotalNav.Text = resTps.ToString();
@@ -255,74 +246,9 @@ namespace Projet_IA
                
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void button_restart_Click(object sender, EventArgs e)
         {
             Application.Restart();
-        }
-
-        private void MainForm_Load_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label_ConsigneVent_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label_consignePoint_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label_consigneCoord_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox_typeVent_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label_x0_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label_xf_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label_yf_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label_y0_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label_tpsTotalNav_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label_nbNoeuds_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label_sommeNoeudsOF_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

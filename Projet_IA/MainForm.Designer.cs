@@ -86,7 +86,6 @@
             this.groupBox_typeVent.TabIndex = 15;
             this.groupBox_typeVent.TabStop = false;
             this.groupBox_typeVent.Text = "Type de vent";
-            this.groupBox_typeVent.Enter += new System.EventHandler(this.groupBox_typeVent_Enter);
             // 
             // radioButton_c
             // 
@@ -137,7 +136,6 @@
             this.label_tpsTotalNav.Size = new System.Drawing.Size(286, 21);
             this.label_tpsTotalNav.TabIndex = 16;
             this.label_tpsTotalNav.Text = "Temps total de navigation (en heures) :";
-            this.label_tpsTotalNav.Click += new System.EventHandler(this.label_tpsTotalNav_Click);
             // 
             // textBox_tpsTotalNav
             // 
@@ -166,7 +164,6 @@
             this.label_nbNoeuds.Size = new System.Drawing.Size(298, 21);
             this.label_nbNoeuds.TabIndex = 18;
             this.label_nbNoeuds.Text = "Nombre des noeuds du chemin solution :";
-            this.label_nbNoeuds.Click += new System.EventHandler(this.label_nbNoeuds_Click);
             // 
             // textBox_sommeNoeudsOF
             // 
@@ -186,7 +183,6 @@
             this.label_sommeNoeudsOF.Size = new System.Drawing.Size(359, 21);
             this.label_sommeNoeudsOF.TabIndex = 20;
             this.label_sommeNoeudsOF.Text = "Somme des noeuds des listes Ouverts et Fermés :";
-            this.label_sommeNoeudsOF.Click += new System.EventHandler(this.label_sommeNoeudsOF_Click);
             // 
             // pictureBox_fondMarin
             // 
@@ -208,7 +204,6 @@
             this.label_consignePoint.Size = new System.Drawing.Size(510, 21);
             this.label_consignePoint.TabIndex = 22;
             this.label_consignePoint.Text = "Cliquez une seule fois sur l\'image pour paramétrer le point de départ ou";
-            this.label_consignePoint.Click += new System.EventHandler(this.label_consignePoint_Click);
             // 
             // label_ConsigneVent
             // 
@@ -219,7 +214,6 @@
             this.label_ConsigneVent.Size = new System.Drawing.Size(211, 21);
             this.label_ConsigneVent.TabIndex = 23;
             this.label_ConsigneVent.Text = "Sélectionnez un type de vent";
-            this.label_ConsigneVent.Click += new System.EventHandler(this.label_ConsigneVent_Click);
             // 
             // label_feedback
             // 
@@ -274,7 +268,6 @@
             this.label_x0.Size = new System.Drawing.Size(39, 21);
             this.label_x0.TabIndex = 29;
             this.label_x0.Text = "x0 : ";
-            this.label_x0.Click += new System.EventHandler(this.label_x0_Click);
             // 
             // label_y0
             // 
@@ -285,7 +278,6 @@
             this.label_y0.Size = new System.Drawing.Size(39, 21);
             this.label_y0.TabIndex = 30;
             this.label_y0.Text = "y0 : ";
-            this.label_y0.Click += new System.EventHandler(this.label_y0_Click);
             // 
             // label_xf
             // 
@@ -296,7 +288,6 @@
             this.label_xf.Size = new System.Drawing.Size(36, 21);
             this.label_xf.TabIndex = 31;
             this.label_xf.Text = "xf : ";
-            this.label_xf.Click += new System.EventHandler(this.label_xf_Click);
             // 
             // label_yf
             // 
@@ -307,7 +298,6 @@
             this.label_yf.Size = new System.Drawing.Size(36, 21);
             this.label_yf.TabIndex = 32;
             this.label_yf.Text = "yf : ";
-            this.label_yf.Click += new System.EventHandler(this.label_yf_Click);
             // 
             // label_consigneCoord
             // 
@@ -318,7 +308,6 @@
             this.label_consigneCoord.Size = new System.Drawing.Size(248, 21);
             this.label_consigneCoord.TabIndex = 33;
             this.label_consigneCoord.Text = "Entrez les coordonées en dessous";
-            this.label_consigneCoord.Click += new System.EventHandler(this.label_consigneCoord_Click);
             // 
             // button_restart
             // 
@@ -368,7 +357,6 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "MainForm";
             this.Text = "Navigation";
-            this.Load += new System.EventHandler(this.MainForm_Load_1);
             this.groupBox_typeVent.ResumeLayout(false);
             this.groupBox_typeVent.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_fondMarin)).EndInit();
